@@ -356,3 +356,49 @@ export function requireLogin() {
     }
   });
 }
+// প্রোফাইল আপডেট করার ফাংশন
+export async function updateUserProfile(uid, updatedData) {
+  return new Promise((resolve) => {
+    try {
+      // প্রোফাইল আপডেট করুন
+      const profiles = JSON.parse(localStorage.getItem(STORAGE_KEYS.PROFILES) || '{}');
+      
+      if (!profiles[uid]) {
+        profiles[uid] = {};
+      }
+      
+      // নতুন ডেটা মার্জ করুন
+      profiles[uid] = {
+        ...profiles[uid],
+        ...updatedData,
+        lastUpdated: new Date().toISOString()
+      };
+      
+      localStorage.setItem(STORAGE_KEYS.PROFILES, JSON.stringify(profiles));
+      
+      // ইউজার ডিসপ্লে নাম আপডেট করুন (যদি পরিবর্তন হয়)
+      if (updatedData.displayName) {
+        const allUsers = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+        const userIndex = allUsers.findIndex(u => u.uid === uid);
+        if (userIndex !== -1) {
+          allUsers[userIndex].displayName = updatedData.displayName;
+          localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(allUsers));
+        }
+        
+        // কারেন্ট ইউজার আপডেট করুন
+        const currentUser = getCurrentUser();
+        if (currentUser && currentUser.uid === uid) {
+          currentUser.displayName = updatedData.displayName;
+          localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(currentUser));
+        }
+      }
+      
+      console.log("✅ Profile updated successfully");
+      resolve(true);
+      
+    } catch (error) {
+      console.error("Profile update error:", error);
+      resolve(false);
+    }
+  });
+}

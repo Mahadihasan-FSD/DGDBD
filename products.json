@@ -1,0 +1,178 @@
+[
+  {
+    "id": "1",
+    "name": "Colmi P28 Plus Calling Fitness Smartwatch",
+    "price": 2750,
+    "currency": "BDT",
+    "category": "Smart Watches",
+    "image": "https://www.colmi.info/cdn/shop/products/COLMIP28PlusSmartwatchBlack.jpg?v=1675499168&width=493",
+    "images": [
+      "https://www.colmi.info/cdn/shop/products/COLMIP28PlusSmartwatchBlack.jpg?v=1675499168&width=493",
+      "https://www.colmi.info/cdn/shop/products/COLMIP28PlusSmartwatchgray.jpg?v=1675499168&width=493",
+      "https://www.colmi.info/cdn/shop/products/COLMIP28PlusSmartwatchgold.jpg?v=1675499168&width=493",
+      "https://www.colmi.info/cdn/shop/products/COLMIP28PlusSmartwatchPink.jpg?v=1675499168&width=493"
+    ],
+    "mainImage": "https://www.colmi.info/cdn/shop/products/COLMIP28PlusSmartwatchBlack.jpg?v=1675499168&width=493",
+    "description": "বড় 1.69 inch TFT Full Touch Display সহ স্মার্টওয়াচ। Bluetooth Calling, Fitness Tracking, Heart Rate ও 100+ Watch Faces সাপোর্ট করে।",
+    "affiliateLink": "https://s.daraz.com.bd/s.bZGln?cc",
+    "platform": "Daraz",
+    "rating": 4.4,
+    "hot": true,
+    "details": {
+      "brand": "COLMI",
+      "model": "P28 Plus Smartwatch",
+      "appSupport": "Da Fit",
+      "bluetooth": "v5.1",
+      "display": {
+        "type": "1.69 inch TFT Full Touchscreen",
+        "resolution": "240 x 280 Pixels"
+      },
+      "battery": {
+        "capacity": "235 mAh",
+        "type": "Lithium Polymer",
+        "chargingTime": "About 2 Hours",
+        "batteryLife": "Approx. 2–3 Days"
+      },
+      "material": "Zinc Alloy + PC, Stainless Steel Button, Silicone Strap",
+      "waterResistance": "IP67 Sweat & Waterproof",
+      "compatibility": "Android 4.4+, iOS 8.0+, HarmonyOS",
+      "chipset": {
+        "main": "Realtek RTL8762CK",
+        "secondary": "JieLi AC6963A",
+        "heartRateSensor": "HX3600",
+        "batteryIC": "Seiko Y1"
+      },
+      "features": [
+        "Bluetooth Calling",
+        "Heart Rate Monitoring",
+        "Sleep Tracking",
+        "Sports Modes",
+        "Alarm Reminder",
+        "Find Device",
+        "Music Control",
+        "Voice Assistant",
+        "Weather Update"
+      ]
+    }
+  },
+  {
+    "id": "2",
+    "name": "Xiaomi SOLOVE F5 Portable Desktop Fan 4000mAh",
+    "price": 1895,
+    "currency": "BDT",
+    "category": "Mini Fans",
+    "image": "https://www.lilium.com.bd/wp-content/uploads/2025/07/XIAOMI-SOLOVE-Desktop-Fan-600x600.jpg",
+    "images": [
+      "https://www.lilium.com.bd/wp-content/uploads/2025/07/XIAOMI-SOLOVE-Desktop-Fan-600x600.jpg",
+      "https://www.lilium.com.bd/wp-content/uploads/2025/07/XIAOMI-SOLOVE-Desktop-Fan-white.jpg",
+      "https://www.lilium.com.bd/wp-content/uploads/2025/07/XIAOMI-SOLOVE-Desktop-Fan-multy-color.jpg"
+    ],
+    "mainImage": "https://www.lilium.com.bd/wp-content/uploads/2025/07/XIAOMI-SOLOVE-Desktop-Fan-600x600.jpg",
+    "description": "4000mAh ব্যাটারি সহ পোর্টেবল ডেস্কটপ ফ্যান। USB Type-C charging এবং long backup time সহ।",
+    "affiliateLink": "https://s.daraz.com.bd/s.bZACy?cc",
+    "platform": "Daraz",
+    "rating": 4.5,
+    "hot": true,
+    "details": {
+      "brand": "Xiaomi",
+      "model": "SOLOVE F5",
+      "battery": {
+        "capacity": "4000mAh",
+        "chargingTime": "About 6 Hours",
+        "workingTime": "3–12 Hours"
+      },
+      "dimension": "134mm x 180mm x 310.5mm",
+      "inputInterface": "USB Type-C",
+      "features": [
+        "Portable Design",
+        "USB Type-C Charging",
+        "Long Battery Backup",
+        "Adjustable Angle",
+        "Low Noise Operation"
+      ]
+    }
+  },
+  {
+    "id": "3",
+    "name": "JISULIFE FA43 Handheld Turbo Fan 4000mAh",
+    "price": 1575,
+    "currency": "BDT",
+    "category": "Mini Fans",
+    "image": "https://jisulife.com.bd/wp-content/uploads/2022/11/Screenshot_4-1.png",
+    "images": [
+      "https://jisulife.com.bd/wp-content/uploads/2022/11/Screenshot_4-1.png",
+      "https://jisulife.com.bd/wp-content/uploads/2022/11/Screenshot_5.png",
+      "https://jisulife.com.bd/wp-content/uploads/2022/11/Screenshot_6.png"
+    ],
+    "mainImage": "https://jisulife.com.bd/wp-content/uploads/2022/11/Screenshot_4-1.png",
+    "description": "Turbo airflow technology সহ শক্তিশালী হ্যান্ডহেল্ড ফ্যান। 3-speed control এবং long backup battery সহ।",
+    "affiliateLink": "https://www.rokomari.com/electronics/304418/jisulife-fa43-handheld-turbo-fan-4000mah",
+    "platform": "Rokomari",
+    "rating": 4.6,
+    "hot": true,
+    "details": {
+      "brand": "JISULIFE",
+      "model": "FA43 Handheld Turbo Fan",
+      "dimensions": "82 x 43 x 176 mm",
+      "interface": "USB Type-C",
+      "speed": {
+        "levels": "3 Speed",
+        "rpm": {
+          "low": "5000 r/min",
+          "medium": "7000 r/min",
+          "high": "9000 r/min"
+        }
+      },
+      "battery": {
+        "chargingTime": "3–5 Hours",
+        "workingTime": "3–16 Hours"
+      },
+      "features": [
+        "Turbo Airflow Technology",
+        "5 Gear Wind System",
+        "Anti-slip Base",
+        "Powerful Motor",
+        "Strong Cooling (4.8m/s)"
+      ]
+    }
+  },
+  {
+    "id": "4",
+    "name": "Joyroom PBM08 Pro Ultra-Slim 10000mAh Magnetic Wireless Power Bank",
+    "price": 2950,
+    "currency": "BDT",
+    "category": "Power Banks",
+    "image": "https://www.joyroom.com/cdn/shop/files/JOYROOMJR-PBM0820WPowerBank5000mAhB2B.jpg?v=1750675829&width=1000",
+    "images": [
+      "https://www.joyroom.com/cdn/shop/files/JOYROOMJR-PBM0820WPowerBank5000mAhB2B.jpg?v=1750675829&width=1000",
+      "https://www.joyroom.com/cdn/shop/files/JOYROOM_JR-PBM08_20W_Power_Bank_5000mAh_B2B_3.jpg?v=1750675860&width=1000",
+      "https://www.joyroom.com/cdn/shop/files/JOYROOM_JR-PBM08_20W_Power_Bank_5000mAh_B2B_5.jpg?v=1750675860&width=1000"
+    ],
+    "mainImage": "https://www.joyroom.com/cdn/shop/files/JOYROOMJR-PBM0820WPowerBank5000mAhB2B.jpg?v=1750675829&width=1000",
+    "description": "Ultra-slim 10000mAh Magnetic Wireless Power Bank। 20W fast charging support করে।",
+    "affiliateLink": "https://s.daraz.com.bd/s.b05dY?cc",
+    "platform": "Daraz",
+    "rating": 4.7,
+    "hot": true,
+    "details": {
+      "brand": "Joyroom",
+      "model": "JR-PBM08 Pro",
+      "battery": {
+        "capacity": "10000mAh",
+        "type": "Lithium Polymer"
+      },
+      "charging": {
+        "wireless": "15W Max",
+        "usbC": "20W PD Fast Charging",
+        "usbA": "18W QC Fast Charging"
+      },
+      "features": [
+        "Magnetic Wireless Charging",
+        "Ultra-Slim Design",
+        "20W Fast Charging",
+        "Type-C & Lightning Dual Port",
+        "LED Battery Indicator"
+      ]
+    }
+  }
+]

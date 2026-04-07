@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DGDBD - Daily Gadgets & Deals Bangladesh</title>
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+     <div class="logo" id="logoBtn">
+      <i class="fas fa-bolt"></i> DGDBD
+    </div> 
+    <nav>
+      <a href="#" id="navHome" class="active">
+        <i class="fas fa-home"></i> হোম
+      </a>
+      <a href="#" id="navCategories">
+        <i class="fas fa-th-large"></i> ক্যাটাগরি
+      </a>
+      <a href="#" id="navTrending">
+        <i class="fas fa-fire"></i> ট্রেন্ডিং
+      </a>
+    </nav>
+    <div class="header-actions">
+      <button id="authBtn" class="auth-btn">
+        <i class="fas fa-user"></i> লগইন
+      </button>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>DGDBD</h4>
+        <p>বাংলাদেশের বিশ্বস্ত টেক গ্যাজেট অ্যাফিলিয়েট</p>
+      </div>
+      <div class="footer-section">
+        <h4>কুইক লিংক</h4>
+        <a href="#" id="footerHome">হোম</a>
+        <a href="#" id="footerCategories">ক্যাটাগরি</a>
+        <a href="#" id="footerTrending">ট্রেন্ডিং</a>
+        <a href="#" id="footerAbout">আমাদের সম্পর্কে</a>
+        <a href="#" id="footerContact">যোগাযোগ</a>
+      </div>
+      <div class="footer-section">
+        <h4>লিগাল</h4>
+        <a href="#" id="footerPrivacy">প্রাইভেসি পলিসি</a>
+        <a href="#" id="footerTerms">টার্মস & কন্ডিশন</a>
+      </div>
+      <div class="footer-section">
+        <h4>সোশ্যাল লিংক</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/DailyGadgetDeals" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/dailygadgetdealsbd/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://m.me/dgdbd.official" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 DGDBD - All Rights Reserved | <a href="#" id="bottomPrivacy">গোপনীয়তা নীতি</a>
+    </div>
+  </footer>
+
+  <div id="loginModal" class="modal hidden">
+    <div class="modal-content"></div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

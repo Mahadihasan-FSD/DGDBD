@@ -13,7 +13,7 @@ export async function renderPrivacy(container) {
         <div class="privacy-content">
           <div class="privacy-card">
             <h2><i class="fas fa-database"></i> আমরা কী তথ্য সংগ্রহ করি?</h2>
-            <p>আমরা শুধুমাত্র আপনার নাম, ইমেইল এবং লগইন তথ্য সংগ্রহ করি যা Google অ্যাকাউন্টের মাধ্যমে দেওয়া হয়। আমরা আপনার ক্রেডিট কার্ড বা ব্যাংক তথ্য সংগ্রহ করি না।</p>
+            <p>আমরা শুধুমাত্র আপনার নাম, ইমেইল এবং লগইন তথ্য সংগ্রহ করি যা Google অ্যাকাউন্ট বা রেজিস্ট্রেশনের মাধ্যমে দেওয়া হয়। আমরা আপনার ক্রেডিট কার্ড বা ব্যাংক তথ্য সংগ্রহ করি না।</p>
           </div>
           
           <div class="privacy-card">
@@ -43,7 +43,7 @@ export async function renderPrivacy(container) {
           
           <div class="privacy-update">
             <i class="fas fa-calendar-alt"></i>
-            <span>শেষ আপডেট: জানুয়ারি ২০২৪</span>
+            <span>শেষ আপডেট: জানুয়ারি ২০২৫</span>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+// Firebase imports
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getAuth,
   signInWithPopup,
@@ -19,6 +20,7 @@ import {
   deleteDoc 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCv4EdnzDWLdmv3gWQr33EKKnUm_6i9jcM",
   authDomain: "dgdbd-b8b06.firebaseapp.com",
@@ -30,12 +32,30 @@ const firebaseConfig = {
 
 let auth = null;
 let db = null;
-let currentUserCallback = null;
+let authInitialized = false;
+
+// Singleton pattern - একবারই initialize হবে
+function getFirebaseApp() {
+  if (getApps().length === 0) {
+    return initializeApp(firebaseConfig);
+  }
+  return getApp();
+}
 
 export function initAuth() {
-  const app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = getFirestore(app);
+  if (authInitialized) {
+    return auth;
+  }
+  
+  try {
+    const app = getFirebaseApp();
+    auth = getAuth(app);
+    db = getFirestore(app);
+    authInitialized = true;
+    console.log("✅ Firebase Auth initialized successfully");
+  } catch (error) {
+    console.error("❌ Firebase init error:", error);
+  }
   return auth;
 }
 
@@ -95,17 +115,21 @@ export async function registerWithEmail(email, password, name, gender) {
 async function saveUserToFirestore(user, extraData = {}) {
   if (!db) return;
   
-  const userRef = doc(db, "users", user.uid);
-  const userData = {
-    uid: user.uid,
-    email: user.email,
-    displayName: user.displayName || extraData.name || 'User',
-    gender: extraData.gender || 'Not Specified',
-    photoURL: user.photoURL || null,
-    createdAt: new Date().toISOString(),
-    lastLogin: new Date().toISOString()
-  };
-  await setDoc(userRef, userData, { merge: true });
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const userData = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName || extraData.name || 'User',
+      gender: extraData.gender || 'Not Specified',
+      photoURL: user.photoURL || null,
+      createdAt: new Date().toISOString(),
+      lastLogin: new Date().toISOString()
+    };
+    await setDoc(userRef, userData, { merge: true });
+  } catch (error) {
+    console.error("Save user error:", error);
+  }
 }
 
 export async function getUserProfile(uid) {
@@ -115,6 +139,7 @@ export async function getUserProfile(uid) {
     const userDoc = await getDoc(userRef);
     return userDoc.exists() ? userDoc.data() : null;
   } catch (error) {
+    console.error("Get profile error:", error);
     return null;
   }
 }
@@ -129,6 +154,7 @@ export async function deleteUserAccount() {
     if (window.showToast) window.showToast('অ্যাকাউন্ট ডিলিট হয়েছে', 'success');
     return true;
   } catch (error) {
+    console.error("Delete account error:", error);
     if (error.code === 'auth/requires-recent-login') {
       window.showToast('দয়া করে আবার লগইন করুন', 'error');
     } else {
@@ -145,6 +171,7 @@ export async function resetPassword(email) {
     window.showToast('পাসওয়ার্ড রিসেট লিংক ইমেইলে পাঠানো হয়েছে', 'success');
     return true;
   } catch (error) {
+    console.error("Reset password error:", error);
     window.showToast(error.message, 'error');
     return false;
   }
@@ -152,7 +179,6 @@ export async function resetPassword(email) {
 
 export function checkAuthState(callback) {
   if (!auth) initAuth();
-  currentUserCallback = callback;
   onAuthStateChanged(auth, (user) => {
     if (callback) callback(user);
   });
@@ -175,79 +201,99 @@ export function showLoginModal(onLogin) {
   const loginForm = modalContent.querySelector('#loginForm');
   const registerForm = modalContent.querySelector('#registerForm');
   
-  tabBtns.forEach(btn => {
-    btn.onclick = () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (btn.dataset.tab === 'login') {
-        loginForm.classList.remove('hidden');
-        registerForm.classList.add('hidden');
-      } else {
-        loginForm.classList.add('hidden');
-        registerForm.classList.remove('hidden');
-      }
-    };
-  });
+  if (tabBtns.length) {
+    tabBtns.forEach(btn => {
+      btn.onclick = () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (btn.dataset.tab === 'login') {
+          if (loginForm) loginForm.classList.remove('hidden');
+          if (registerForm) registerForm.classList.add('hidden');
+        } else {
+          if (loginForm) loginForm.classList.add('hidden');
+          if (registerForm) registerForm.classList.remove('hidden');
+        }
+      };
+    });
+  }
   
   // Login handler
-  loginForm.onsubmit = async (e) => {
-    e.preventDefault();
-    const email = modalContent.querySelector('#loginEmail').value;
-    const password = modalContent.querySelector('#loginPassword').value;
-    const user = await loginWithEmail(email, password);
-    if (user && onLogin) onLogin(user);
-    if (user) closeLoginModal();
-  };
+  if (loginForm) {
+    loginForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const email = modalContent.querySelector('#loginEmail')?.value;
+      const password = modalContent.querySelector('#loginPassword')?.value;
+      if (email && password) {
+        const user = await loginWithEmail(email, password);
+        if (user && onLogin) onLogin(user);
+        if (user) closeLoginModal();
+      }
+    };
+  }
   
   // Register handler
-  registerForm.onsubmit = async (e) => {
-    e.preventDefault();
-    const name = modalContent.querySelector('#regName').value;
-    const email = modalContent.querySelector('#regEmail').value;
-    const gender = modalContent.querySelector('#regGender').value;
-    const password = modalContent.querySelector('#regPassword').value;
-    const confirm = modalContent.querySelector('#regConfirmPassword').value;
-    
-    if (!gender) {
-      window.showToast('জেন্ডার নির্বাচন করুন', 'error');
-      return;
-    }
-    if (password !== confirm) {
-      window.showToast('পাসওয়ার্ড মিলছে না', 'error');
-      return;
-    }
-    if (password.length < 6) {
-      window.showToast('পাসওয়ার্ড ৬+ অক্ষর হতে হবে', 'error');
-      return;
-    }
-    
-    const user = await registerWithEmail(email, password, name, gender);
-    if (user && onLogin) onLogin(user);
-    if (user) closeLoginModal();
-  };
+  if (registerForm) {
+    registerForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const name = modalContent.querySelector('#regName')?.value;
+      const email = modalContent.querySelector('#regEmail')?.value;
+      const gender = modalContent.querySelector('#regGender')?.value;
+      const password = modalContent.querySelector('#regPassword')?.value;
+      const confirm = modalContent.querySelector('#regConfirmPassword')?.value;
+      
+      if (!gender) {
+        window.showToast('জেন্ডার নির্বাচন করুন', 'error');
+        return;
+      }
+      if (password !== confirm) {
+        window.showToast('পাসওয়ার্ড মিলছে না', 'error');
+        return;
+      }
+      if (password.length < 6) {
+        window.showToast('পাসওয়ার্ড ৬+ অক্ষর হতে হবে', 'error');
+        return;
+      }
+      
+      const user = await registerWithEmail(email, password, name, gender);
+      if (user && onLogin) onLogin(user);
+      if (user) closeLoginModal();
+    };
+  }
   
   // Forgot password
-  modalContent.querySelector('#forgotPassword').onclick = async (e) => {
-    e.preventDefault();
-    const email = modalContent.querySelector('#loginEmail').value;
-    if (!email) {
-      window.showToast('ইমেইল লিখুন', 'error');
-      return;
-    }
-    await resetPassword(email);
-  };
+  const forgotLink = modalContent.querySelector('#forgotPassword');
+  if (forgotLink) {
+    forgotLink.onclick = async (e) => {
+      e.preventDefault();
+      const email = modalContent.querySelector('#loginEmail')?.value;
+      if (!email) {
+        window.showToast('ইমেইল লিখুন', 'error');
+        return;
+      }
+      await resetPassword(email);
+    };
+  }
   
   // Google login
-  modalContent.querySelector('#googleLoginBtn').onclick = async () => {
-    const user = await loginWithGoogle();
-    if (user && onLogin) onLogin(user);
-    if (user) closeLoginModal();
-  };
+  const googleBtn = modalContent.querySelector('#googleLoginBtn');
+  if (googleBtn) {
+    googleBtn.onclick = async () => {
+      const user = await loginWithGoogle();
+      if (user && onLogin) onLogin(user);
+      if (user) closeLoginModal();
+    };
+  }
+  
+  // Close button
+  const closeBtn = modalContent.querySelector('.close-modal');
+  if (closeBtn) {
+    closeBtn.onclick = () => closeLoginModal();
+  }
 }
 
 function getLoginFormHTML() {
   return `
-    <span class="close-modal" onclick="window.closeLoginModal()">&times;</span>
+    <span class="close-modal">&times;</span>
     <div class="login-tabs">
       <button class="tab-btn active" data-tab="login">লগইন</button>
       <button class="tab-btn" data-tab="register">রেজিস্টার</button>
@@ -289,13 +335,24 @@ export function closeLoginModal() {
 }
 
 export async function logoutUser() {
-  if (auth) await signOut(auth);
+  if (auth) {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  }
   if (window.showToast) window.showToast('লগআউট হয়েছে', 'success');
 }
 
 export function requireLogin() {
   return new Promise((resolve) => {
-    if (auth?.currentUser) return resolve(true);
-    showLoginModal(() => resolve(!!auth?.currentUser));
+    if (auth?.currentUser) {
+      resolve(true);
+    } else {
+      showLoginModal(() => {
+        resolve(!!auth?.currentUser);
+      });
+    }
   });
 }
